@@ -33,11 +33,11 @@ const { User, Thought } = require("../models");
 //         };
 //         return res.json(studentObj);
 //       })
-      .catch((err) => {
-        console.log(err);
-        return res.status(500).json(err);
-      });
-  },
+  //     .catch((err) => {
+  //       console.log(err);
+  //       return res.status(500).json(err);
+  //     });
+  // },
   
   getSingleUSer(req, res) {
     User.findOne({ _id: req.params.userId })

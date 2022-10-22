@@ -18,6 +18,7 @@ const thoughtSchema = new Schema(
       type: String,
       required: true,
     },
+    //Include Reactions as the `reaction` field's subdocument schema in the Thought model.
     reactions: [reactionSchema],
   },
   {
