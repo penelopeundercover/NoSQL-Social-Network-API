@@ -1,6 +1,5 @@
 const { Thought, User } = require("../models");
-
-module.exports = {
+const thoughtController = {
   getThoughts(req, res) {
     Thought.find()
       .then((thoughts) => res.json(thoughts))
@@ -12,7 +11,7 @@ module.exports = {
       .select("-__v")
       .then((thought) =>
         !thought
-          ? res.status(404).json({ message: "No thought with that ID" })
+          ? res.status(404).json({ message: "No such thought exists." })
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
@@ -51,4 +50,35 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
+
+  createReaction(req, res) {
+    console.log("You are adding a reaction");
+    console.log(req.body);
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $addToSet: { reactions: req.body } }
+    )
+      .then((thought) =>
+        !thought
+          ? res.status(404).json({ message: "No such thought exists. :(" })
+          : res.json(thought)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
+
+  deleteReaction(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $pull: { reaction: { reactionId: req.params.reactionId } } },
+      { runValidators: true, new: true }
+    )
+      .then((thought) =>
+        !thought
+          ? res.status(404).json({ message: "No such thought exists. :(" })
+          : res.json(thought)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
 };
+
+module.exports = thoughtController;

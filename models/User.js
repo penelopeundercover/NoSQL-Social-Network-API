@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
 
-// Schema to create User model
 const userSchema = new Schema(
   {
     username: {
@@ -9,24 +8,18 @@ const userSchema = new Schema(
       unique: true,
       trim: true,
     },
-  },
-  {
     email: {
       type: String,
       required: true,
       unique: true,
-      // match: [], Figure out validation
+      // match: [/0-9a-z/, "Must be a valid email address."],
     },
-  },
-  {
     thoughts: [
       {
         type: Schema.Types.ObjectId,
         ref: "Thought",
       },
     ],
-  },
-  {
     friends: [
       {
         type: Schema.Types.ObjectId,
