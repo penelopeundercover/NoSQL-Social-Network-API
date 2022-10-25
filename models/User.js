@@ -12,8 +12,12 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      // match: [/0-9a-z/, "Must be a valid email address."],
+      match: [
+        `@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$`,
+        "Must be a valid email address.",
+      ],
     },
+    //Create separate arrays for thoughts and friends, instead of combining them into one array. This creates less work because you won't be pulling all of the info of these arrays every single time you get a user.
     thoughts: [
       {
         type: Schema.Types.ObjectId,
@@ -40,6 +44,6 @@ userSchema.virtual("friendCount").get(function () {
   return this.friends.length;
 });
 
-const User = model("user", userSchema);
+const User = model("User", userSchema);
 
 module.exports = User;

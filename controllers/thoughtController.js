@@ -11,7 +11,7 @@ const thoughtController = {
       .select("-__v")
       .then((thought) =>
         !thought
-          ? res.status(404).json({ message: "No such thought exists." })
+          ? res.status(404).json({ message: "No such thought exists" })
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
@@ -33,7 +33,7 @@ const thoughtController = {
           ? res.status(404).json({ message: "No thought with that ID" })
           : Student.deleteMany({ _id: { $in: thought.students } })
       )
-      .then(() => res.json({ message: "Thought and user deleted!" }))
+      .then(() => res.json({ message: "Thought and user deleted" }))
       .catch((err) => res.status(500).json(err));
   },
 
@@ -45,7 +45,7 @@ const thoughtController = {
     )
       .then((thought) =>
         !thought
-          ? res.status(404).json({ message: "No thought with this id!" })
+          ? res.status(404).json({ message: "No such thought exists" })
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
@@ -60,7 +60,7 @@ const thoughtController = {
     )
       .then((thought) =>
         !thought
-          ? res.status(404).json({ message: "No such thought exists. :(" })
+          ? res.status(404).json({ message: "No such thought exists" })
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
@@ -74,7 +74,7 @@ const thoughtController = {
     )
       .then((thought) =>
         !thought
-          ? res.status(404).json({ message: "No such thought exists. :(" })
+          ? res.status(404).json({ message: "No such thought exists" })
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));

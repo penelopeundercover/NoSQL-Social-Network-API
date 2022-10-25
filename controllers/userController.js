@@ -1,5 +1,5 @@
 const { ObjectId } = require("mongoose").Types;
-const { User, Thought } = require("../models");
+const { Thought, User } = require("../models");
 const userController = {
   getUsers(req, res) {
     User.find()
@@ -101,7 +101,7 @@ const userController = {
           ? res.status(404).json({
               message: "User not found",
             })
-          : res.json({ message: "Friend deleted. :(" })
+          : res.json({ message: "Friend deleted :(" })
       )
       .catch((err) => {
         console.log(err);
