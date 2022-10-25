@@ -12,10 +12,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      match: [
-        `@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$`,
-        "Must be a valid email address.",
-      ],
+      match: [/.+@.+\..+/],
     },
     //Create separate arrays for thoughts and friends, instead of combining them into one array. This creates less work because you won't be pulling all of the info of these arrays every single time you get a user.
     thoughts: [
