@@ -31,7 +31,7 @@ const thoughtController = {
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: "No thought with that ID" })
-          : Student.deleteMany({ _id: { $in: thought.students } })
+          : User.deleteMany({ _id: { $in: thought.users } })
       )
       .then(() => res.json({ message: "Thought and user deleted" }))
       .catch((err) => res.status(500).json(err));
